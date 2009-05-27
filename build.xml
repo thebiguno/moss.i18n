@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<!DOCTYPE project [
+<!ENTITY baseBuild SYSTEM "../org.homeunix.thecave.build/baseBuild.xml.inc">
+]>
+<project name="Moss Application Framework" default="jar" basedir=".">
+
+	<!-- Version number and other build-specific properties -->
+	<property file="etc/build.properties"/>
+
+	<!-- Set up all the project specific properties -->
+	<property name="PROJECT_NAME" value="Moss Application Framework"/>
+	<property name="PROJECT_SHORT_NAME" value="moss-application"/>
+	<property name="PROJECT_DESCRIPTION" value="Application framework"/>
+	<property name="PROJECT_COPYRIGHT" value="Copyright Wyatt Olson"/>
+
+    <path id="classpath">
+    	<fileset dir="lib" includes="**/*.jar"/>
+    </path>
+	
+	&baseBuild;
+
+</project>
