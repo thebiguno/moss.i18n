@@ -2,15 +2,15 @@
 <!DOCTYPE project [
 <!ENTITY baseBuild SYSTEM "../ca.digitalcave.build/build.xml.inc">
 ]>
-<project name="Moss Application Framework" default="jar" basedir=".">
+<project name="Moss i18n Framework" default="jar" basedir=".">
 
 	<!-- Version number and other build-specific properties -->
 	<property file="etc/build.properties"/>
 
 	<!-- Set up all the project specific properties -->
-	<property name="PROJECT_NAME" value="Moss Application Framework"/>
-	<property name="PROJECT_SHORT_NAME" value="moss-application"/>
-	<property name="PROJECT_DESCRIPTION" value="Application framework"/>
+	<property name="PROJECT_NAME" value="Moss i18n Framework"/>
+	<property name="PROJECT_SHORT_NAME" value="moss-i18n"/>
+	<property name="PROJECT_DESCRIPTION" value="i18n framework"/>
 	<property name="PROJECT_COPYRIGHT" value="Copyright Wyatt Olson"/>
 
     <path id="classpath">
