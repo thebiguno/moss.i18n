@@ -1,7 +1,7 @@
 /*
  * Created on Jun 2, 2006 by wyatt
  */
-package org.homeunix.thecave.moss.i18n;
+package ca.digitalcave.moss.i18n;
 
 /**
  * I use this list of keys for the Translate class.  Using this instead 

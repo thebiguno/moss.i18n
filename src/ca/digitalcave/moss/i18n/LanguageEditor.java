@@ -1,7 +1,7 @@
 /*
  * Created on Aug 11, 2007 by wyatt
  */
-package org.homeunix.thecave.moss.i18n;
+package ca.digitalcave.moss.i18n;
 
 import java.awt.BorderLayout;
 import java.awt.Color;

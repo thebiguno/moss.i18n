@@ -1,7 +1,7 @@
 /*
  * Created on May 8, 2006 by wyatt
  */
-package org.homeunix.thecave.moss.i18n;
+package ca.digitalcave.moss.i18n;
 
 import java.io.BufferedInputStream;
 import java.io.File;
