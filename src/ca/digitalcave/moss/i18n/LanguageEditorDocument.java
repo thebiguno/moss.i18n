@@ -5,8 +5,8 @@ package ca.digitalcave.moss.i18n;
 
 import java.io.File;
 
-import org.homeunix.thecave.moss.application.document.AbstractDocument;
-import org.homeunix.thecave.moss.application.document.exception.DocumentSaveException;
+import ca.digitalcave.moss.application.document.AbstractDocument;
+import ca.digitalcave.moss.application.document.exception.DocumentSaveException;
 
 public class LanguageEditorDocument extends AbstractDocument {
 	public void save() throws DocumentSaveException {}

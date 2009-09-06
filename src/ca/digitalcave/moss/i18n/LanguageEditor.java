@@ -40,21 +40,21 @@ import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import javax.swing.filechooser.FileFilter;
 
-import org.homeunix.thecave.moss.application.document.exception.DocumentSaveException;
-import org.homeunix.thecave.moss.collections.CompositeList;
-import org.homeunix.thecave.moss.collections.FilteredList;
-import org.homeunix.thecave.moss.collections.ListSet;
-import org.homeunix.thecave.moss.common.OperatingSystemUtil;
-import org.homeunix.thecave.moss.swing.LookAndFeelUtil;
-import org.homeunix.thecave.moss.swing.MossDocumentFrame;
-import org.homeunix.thecave.moss.swing.MossHintTextArea;
-import org.homeunix.thecave.moss.swing.MossMenu;
-import org.homeunix.thecave.moss.swing.MossMenuBar;
-import org.homeunix.thecave.moss.swing.MossMenuItem;
-import org.homeunix.thecave.moss.swing.MossPanel;
-import org.homeunix.thecave.moss.swing.MossSearchField;
-import org.homeunix.thecave.moss.swing.MossSearchField.SearchTextChangedEvent;
-import org.homeunix.thecave.moss.swing.model.BackedListModel;
+import ca.digitalcave.moss.application.document.exception.DocumentSaveException;
+import ca.digitalcave.moss.collections.CompositeList;
+import ca.digitalcave.moss.collections.FilteredList;
+import ca.digitalcave.moss.collections.ListSet;
+import ca.digitalcave.moss.common.OperatingSystemUtil;
+import ca.digitalcave.moss.swing.LookAndFeelUtil;
+import ca.digitalcave.moss.swing.MossDocumentFrame;
+import ca.digitalcave.moss.swing.MossHintTextArea;
+import ca.digitalcave.moss.swing.MossMenu;
+import ca.digitalcave.moss.swing.MossMenuBar;
+import ca.digitalcave.moss.swing.MossMenuItem;
+import ca.digitalcave.moss.swing.MossPanel;
+import ca.digitalcave.moss.swing.MossSearchField;
+import ca.digitalcave.moss.swing.MossSearchField.SearchTextChangedEvent;
+import ca.digitalcave.moss.swing.model.BackedListModel;
 
 /**
  * A fairly complete standalone translation editor.  This allows people to easily
@@ -114,24 +114,24 @@ public class LanguageEditor extends MossDocumentFrame {
 
 	private final JList keyList;
 	private final MossSearchField search;
-	
+
 	private final Set<String> enumStrings = new HashSet<String>();	//Keys which are from enums.  Keys which are from translation, but not enum, are marked in red.
 	private final Set<String> translationStrings = new HashSet<String>();
-	
+
 	private final ListSet<String> enumStringsList = new ListSet<String>(enumStrings);
 	private final ListSet<String> translationStringsList = new ListSet<String>(translationStrings);
-	
+
 	private final CompositeList<String> backingList;
 	private final FilteredKeyListModel filter;
 	private final StringBackedListModel keyListModel;
 	private static final LanguageEditorDocument document = new LanguageEditorDocument();
-	
+
 	private String selectedFilterLanguage;
-	
+
 	public LanguageEditor() {
 		this(".lang", null);
 	}
-	
+
 	public LanguageEditor(String translationSuffix) {
 		this(translationSuffix, null);
 	}
@@ -148,7 +148,7 @@ public class LanguageEditor extends MossDocumentFrame {
 
 		this.translationSuffix = translationSuffix;
 		this.primaryLanguage = primaryLanguage;
-		
+
 		if (OperatingSystemUtil.isMac())
 			search = new MossSearchField();
 		else
@@ -167,9 +167,9 @@ public class LanguageEditor extends MossDocumentFrame {
 
 		backingList.addList(enumStringsList);
 		backingList.addList(translationStringsList);
-		
+
 		loadKeys((Enum[]) Keys.values());
-		
+
 		JScrollPane listScroller = new JScrollPane(keyList);
 
 		filterAll.setSelected(true);
@@ -192,10 +192,10 @@ public class LanguageEditor extends MossDocumentFrame {
 				keyListModel.updateList();				
 			}
 		});
-		
+
 		JButton help = new JButton("Help");
 		help.putClientProperty("Quaqua.Button.style", "help");
-		
+
 		help.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e) {
 				JOptionPane.showMessageDialog(
@@ -223,19 +223,19 @@ public class LanguageEditor extends MossDocumentFrame {
 						JOptionPane.INFORMATION_MESSAGE);
 			}
 		});
-		
+
 
 		JPanel filterPanelRight = new JPanel(new FlowLayout(FlowLayout.RIGHT));
 		filterPanelRight.add(search);
 		filterPanelRight.add(filterAll);
-		
+
 		JPanel filterPanelLeft = new JPanel(new FlowLayout(FlowLayout.LEFT)); 
 		filterPanelLeft.add(help);
 
 		JPanel filterPanel = new JPanel(new BorderLayout());
 		filterPanel.add(filterPanelRight, BorderLayout.EAST);
 		filterPanel.add(filterPanelLeft, BorderLayout.WEST);
-		
+
 		JPanel translatorPanel = new JPanel();
 		translatorPanel.setLayout(new GridLayout(0, 1));
 		JScrollPane translatorScroller = new JScrollPane(translatorPanel);
@@ -251,7 +251,7 @@ public class LanguageEditor extends MossDocumentFrame {
 			translatorPanels.put(language, panel);
 			translatorPanel.add(panel);
 		}
-		
+
 		keyList.setCellRenderer(new DefaultListCellRenderer(){
 			public static final long serialVersionUID = 0;
 
@@ -288,16 +288,16 @@ public class LanguageEditor extends MossDocumentFrame {
 				}
 			}
 		});
-		
+
 		backingList.updateList();
-		
+
 		this.setTitle("Language Editor");
 		this.setLayout(new BorderLayout());
 		this.add(filterPanel, BorderLayout.NORTH);
 		this.add(listScroller, BorderLayout.WEST);
 		this.add(translatorScroller, BorderLayout.CENTER);
-		
-		
+
+
 		MossMenuBar menuBar = new MossMenuBar(this);
 		MossMenu fileMenu = new MossMenu(this, "File");
 		MossMenuItem save = new MossMenuItem(this, "Save Translation", KeyStroke.getKeyStroke(KeyEvent.VK_S, Toolkit.getDefaultToolkit().getMenuShortcutKeyMask()));
@@ -315,7 +315,7 @@ public class LanguageEditor extends MossDocumentFrame {
 				LanguageEditor.this.closeWindow();
 			}
 		});
-		
+
 		fileMenu.add(save);
 		fileMenu.add(close);
 		menuBar.add(fileMenu);
@@ -328,7 +328,7 @@ public class LanguageEditor extends MossDocumentFrame {
 		super.initPostPack();
 		keyList.requestFocusInWindow();
 	}
-	
+
 	@Override
 	public boolean canClose() {
 		if (getDocument().isChanged()){
@@ -356,18 +356,18 @@ public class LanguageEditor extends MossDocumentFrame {
 
 		return true;
 	}
-	
+
 	public void loadKeys(Enum<?>... keys){
 		enumStrings.addAll(new EnumList(keys));
-		
+
 		enumStringsList.updateList();
 	}
-	
+
 	public void loadKeys(String... keys){
 		for (String string : keys) {
 			enumStrings.add(string);
 		}
-		
+
 		enumStringsList.updateList();
 	}
 
@@ -382,11 +382,11 @@ public class LanguageEditor extends MossDocumentFrame {
 			List<String> singleLanguageList = new LinkedList<String>();
 			singleLanguageList.add(language);
 			t.loadLanguages(resourcePath, singleLanguageList);
-			
+
 			for (Object string : t.getTranslations().keySet()) {
 				translationStrings.add(string.toString());				
 			}
-			
+
 			translationStringsList.updateList();
 		}
 	}
@@ -402,11 +402,11 @@ public class LanguageEditor extends MossDocumentFrame {
 			List<String> singleLanguageList = new LinkedList<String>();
 			singleLanguageList.add(language);
 			t.loadLanguages(jarFile, resourcePath, singleLanguageList);
-			
+
 			for (Object string : t.getTranslations().keySet()) {
 				translationStrings.add(string.toString());				
 			}
-			
+
 			translationStringsList.updateList();
 		}
 	}
@@ -422,66 +422,66 @@ public class LanguageEditor extends MossDocumentFrame {
 			List<String> singleLanguageList = new LinkedList<String>();
 			singleLanguageList.add(language);
 			t.loadLanguages(languageDirectory, singleLanguageList);
-			
+
 			for (Object string : t.getTranslations().keySet()) {
 				translationStrings.add(string.toString());				
 			}
-			
+
 			translationStringsList.updateList();
 		}
 	}
 
-//	/**
-//	 * Saves the translations to the given directory.
-//	 * @param f
-//	 */
-//	public void saveLanguages(File f){
-//		//First we need to make sure changes are saved
-//		for (String string : LanguageEditor.this.languageSet) {
-//			translatorPanels.get(string).loadKey(keyList.getSelectedValue().toString());
-//		}
-//		
-//		for (String language : languageSet) {
-//			if (primaryLanguage == null || primaryLanguage.equals(language)){
-//				try {
-//					translators.get(language).getTranslations().store(new FileOutputStream(new File(f + File.separator + language + translationSuffix)), "Created by Wyatt Olson's Language Editor, included in Moss: http://moss.thecave.homeunix.org");
-//				}
-//				catch (FileNotFoundException fnfe){
-//					Log.error(fnfe);
-//				}
-//				catch (IOException ioe){
-//					Log.error(ioe);
-//				}
-//			}
-//		}
-//	}
+	//	/**
+	//	 * Saves the translations to the given directory.
+	//	 * @param f
+	//	 */
+	//	public void saveLanguages(File f){
+	//		//First we need to make sure changes are saved
+	//		for (String string : LanguageEditor.this.languageSet) {
+	//			translatorPanels.get(string).loadKey(keyList.getSelectedValue().toString());
+	//		}
+	//		
+	//		for (String language : languageSet) {
+	//			if (primaryLanguage == null || primaryLanguage.equals(language)){
+	//				try {
+	//					translators.get(language).getTranslations().store(new FileOutputStream(new File(f + File.separator + language + translationSuffix)), "Created by Wyatt Olson's Language Editor, included in Moss: http://moss.thecave.homeunix.org");
+	//				}
+	//				catch (FileNotFoundException fnfe){
+	//					Log.error(fnfe);
+	//				}
+	//				catch (IOException ioe){
+	//					Log.error(ioe);
+	//				}
+	//			}
+	//		}
+	//	}
 
 	/**
 	 * Save the translations.  The user will be prompted for a location.
 	 */
-//	public void saveLanguages(){
-//		FileFilter filter = new FileFilter(){
-//			@Override
-//			public boolean accept(File f) {
-//				if (f.isDirectory())
-//					return true;
-//				return false;
-//			}
-//
-//			@Override
-//			public String getDescription() {
-//				return "Directories";
-//			}
-//		};
-//
-//		JFileChooser chooser = new JFileChooser();
-//		chooser.setFileFilter(filter);
-//		chooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
-//
-//		if (chooser.showSaveDialog(this) == JFileChooser.APPROVE_OPTION){
-//			saveLanguages(chooser.getSelectedFile());
-//		}
-//	}
+	//	public void saveLanguages(){
+	//		FileFilter filter = new FileFilter(){
+	//			@Override
+	//			public boolean accept(File f) {
+	//				if (f.isDirectory())
+	//					return true;
+	//				return false;
+	//			}
+	//
+	//			@Override
+	//			public String getDescription() {
+	//				return "Directories";
+	//			}
+	//		};
+	//
+	//		JFileChooser chooser = new JFileChooser();
+	//		chooser.setFileFilter(filter);
+	//		chooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+	//
+	//		if (chooser.showSaveDialog(this) == JFileChooser.APPROVE_OPTION){
+	//			saveLanguages(chooser.getSelectedFile());
+	//		}
+	//	}
 
 	String getSelectedFilterLanguage(){
 		return selectedFilterLanguage;
@@ -520,7 +520,7 @@ public class LanguageEditor extends MossDocumentFrame {
 		for (String string : LanguageEditor.this.languageSet) {
 			translatorPanels.get(string).loadKey(keyList.getSelectedValue().toString());
 		}
-		
+
 		//If we have passed in a file, get the parent directory.
 		if (!directory.isDirectory())
 			directory = directory.getParentFile();
@@ -528,7 +528,7 @@ public class LanguageEditor extends MossDocumentFrame {
 		//If the directory does not exist, attempt to create it
 		if (!directory.exists())
 			directory.mkdirs();
-		
+
 		//Save each translation to its own file.
 		boolean success = true;
 		for (String language : languageSet) {
@@ -552,10 +552,10 @@ public class LanguageEditor extends MossDocumentFrame {
 				}
 			}
 		}
-		
+
 		if (success)
 			getDocument().resetChanged();
-		
+
 		updateContent();
 	}
 
@@ -565,23 +565,23 @@ public class LanguageEditor extends MossDocumentFrame {
 		private final MossHintTextArea translation;
 		private final String language;
 		private final JRadioButton filterTranslated;
-//		private final Translator translator;
-//		private final Color color;
+		//		private final Translator translator;
+		//		private final Color color;
 		private String currentlySelectedKey = null;
 
 		public TranslatorPanel(String language, boolean enabled) {
 			super(true);
-			
-//			this.translator = translators.get(language);
+
+			//			this.translator = translators.get(language);
 			this.language = language;
-//			this.color = lang;
+			//			this.color = lang;
 
 			filterTranslated = new JRadioButton("<html><font color='" + languageColor.get(language) + "'>" + getVerticalText(language) + "</font></html>");
 			translation = new MossHintTextArea("", true);
 
 			translation.setEditable(enabled);
 			translation.setForeground(enabled ? Color.BLACK : Color.GRAY);
-			
+
 			open();
 		}
 

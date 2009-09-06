@@ -14,7 +14,7 @@ import java.util.Locale;
 import java.util.Properties;
 import java.util.logging.Logger;
 
-import org.homeunix.thecave.moss.application.plugin.factory.ClassLoaderFunctions;
+import ca.digitalcave.moss.common.ClassLoaderFunctions;
 
 
 public class Translator {
