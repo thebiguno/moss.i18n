@@ -49,13 +49,9 @@ public class Translator {
 			try {
 				translations.load(Translator.class.getResourceAsStream(path));
 			}
-			catch (RuntimeException re){
-				Logger.getLogger(this.getClass().getName()).finest("Could not load " + language + ": " + re);
+			catch (Throwable t){
+				Logger.getLogger(this.getClass().getName()).finest("Could not load " + language);
 			}
-			catch (IOException ioe){
-				Logger.getLogger(this.getClass().getName()).finest("Could not load " + language + ": " + ioe);
-			}
-
 		}
 
 		setLocale();
@@ -89,7 +85,7 @@ public class Translator {
 					Logger.getLogger(this.getClass().getName()).finest("Failed to load translation " + path + " in " + jarFile.getName() + "; could not open stream.");
 			}
 			catch (IOException ioe){
-				Logger.getLogger(this.getClass().getName()).info("Could not load " + language + " from " + jarFile.getName() + ":/" + path + ": " + ioe);
+				Logger.getLogger(this.getClass().getName()).finest("Could not load " + language + " from " + jarFile.getName() + ":/" + path);
 			}
 
 		}
@@ -133,7 +129,7 @@ public class Translator {
 				translations.load(new BufferedInputStream(new FileInputStream(languageFile)));
 			}
 			catch (IOException ioe){
-				Logger.getLogger(this.getClass().getName()).info("Could not load " + language + " from " + languageFile.getAbsolutePath() + ": " + ioe);
+				Logger.getLogger(this.getClass().getName()).finest("Could not load " + language + " from " + languageFile.getAbsolutePath());
 			}
 		}
 

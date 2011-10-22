@@ -1,3 +1,6 @@
+2.1.0.1 - October 22 2011
+-Changed log message when language was not found, as this is not an error.
+
 2.1.0.0 - September 6 2009
 -Renamed packages to ca.digitalcave
 
