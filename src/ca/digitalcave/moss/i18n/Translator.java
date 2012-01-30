@@ -167,9 +167,9 @@ public class Translator {
 		String localeCountry = this.get(Keys.LOCALE_COUNTRY_CODE);
 		String localeVariant = this.get(Keys.LOCALE_VARIANT_CODE);
 
-		if (localeLanguage == null) localeLanguage = "";
-		if (localeCountry == null) localeCountry = "";
-		if (localeVariant == null) localeVariant = "";
+		if (localeLanguage == null || Keys.LOCALE_LANGUAGE_CODE.toString().equals(localeLanguage)) localeLanguage = "";
+		if (localeCountry == null || Keys.LOCALE_COUNTRY_CODE.toString().equals(localeCountry)) localeCountry = "";
+		if (localeVariant == null || Keys.LOCALE_VARIANT_CODE.toString().equals(localeVariant)) localeVariant = "";
 
 		Locale.setDefault(new Locale(localeLanguage, localeCountry, localeVariant));
 	}
